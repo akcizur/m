@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Botanic WMS — jednoduchý lokální skladový systém.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>Botanic · Sklad</title>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">B</div>
+        <div>
+          <strong>BOTANIC</strong>
+          <small>SKLAD</small>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="tool-btn" id="simpleTheme" type="button" aria-label="Přepnout vzhled">◐</button>
+        <button class="tool-btn" id="simpleSettings" type="button">Nastavení</button>
+        <button class="btn primary" id="simpleReceive" type="button">+ Příjem</button>
+      </div>
+    </header>
+
+    <section class="summary" id="summary" aria-label="Souhrn skladu"></section>
+
+    <section class="toolbar" aria-label="Nástroje skladu">
+      <div class="toolbar-left">
+        <label class="search">
+          <span aria-hidden="true">⌕</span>
+          <input id="simpleSearch" type="search" placeholder="Hledat pytel, surovinu, šarži, box, pozici…" autocomplete="off">
+        </label>
+        <button class="filter active" data-simple-view="inventory" type="button">Zásoby</button>
+        <button class="filter" data-simple-view="warehouse" type="button">Pozice</button>
+        <button class="filter" data-simple-view="movements" type="button">Pohyby</button>
+        <button class="filter" data-simple-view="materials" type="button">Suroviny</button>
+        <button class="filter" data-simple-view="counts" type="button">Inventura</button>
+      </div>
+      <div class="toolbar-right">
+        <button class="tool-btn" id="simpleSortButton" type="button">↕ Řazení</button>
+        <button class="tool-btn" id="simpleViewButton" type="button">☷ Kompaktní</button>
+        <button class="tool-btn" id="simpleExport" type="button">↓ Export</button>
+        <button class="tool-btn" id="simpleImport" type="button">↑ Import</button>
+        <input id="simpleFile" type="file" accept=".xlsx,.xls" hidden>
+      </div>
+    </section>
+
+    <section class="view-stack">
+      <section id="view-inventory" class="view"></section>
+      <section id="view-warehouse" class="view" hidden></section>
+      <section id="view-movements" class="view" hidden></section>
+      <section id="view-materials" class="view" hidden></section>
+      <section id="view-counts" class="view" hidden></section>
+      <section id="view-dashboard" class="view" hidden></section>
+    </section>
+
+    <footer class="bottom">
+      <span id="simpleSelection">0 řádků</span>
+      <span id="connectionState">Lokální data</span>
+      <div class="pager">
+        <label>Řádků
+          <select id="simpleRows">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+          </select>
+        </label>
+        <span id="simplePage">Strana 1 z 1</span>
+        <div class="page-buttons">
+          <button class="page-btn" id="firstPage" type="button" aria-label="První strana">«</button>
+          <button class="page-btn" id="prevPage" type="button" aria-label="Předchozí strana">‹</button>
+          <button class="page-btn" id="nextPage" type="button" aria-label="Další strana">›</button>
+          <button class="page-btn" id="lastPage" type="button" aria-label="Poslední strana">»</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+
+  <div id="legacy-ui" hidden aria-hidden="true">
+    <aside id="sidebar"></aside><button id="menuToggle" type="button"></button>
+    <button id="quickReceive" type="button"></button><button id="themeToggle" type="button"></button>
+    <button id="settingsBtn" type="button"></button><button id="exportBtn" type="button"></button><button id="importBtn" type="button"></button>
+    <input id="globalSearch"><input id="fileInput" type="file">
+  </div>
+
+  <dialog id="actionDialog" aria-label="Akce skladu"></dialog>
+  <div id="toastStack" class="toast-stack" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+  <script src="simple-ui.js"></script>
+  <script src="modal-ui.js"></script>
+</body>
+</html>
