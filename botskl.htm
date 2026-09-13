@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="dark"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Botanic WMS — jednoduchý lokální skladový systém.">
+  <link rel="manifest" href="file:///C:/Users/ruzic/Downloads/super-duper-spork-simple-remaster-1/manifest.webmanifest">
+  <link rel="stylesheet" href="botskl_files/styles_c7cZ.css">
+  <title>Botanic · Sklad</title>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">B</div>
+        <div>
+          <strong>BOTANIC</strong>
+          <small>SKLAD</small>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="tool-btn" id="simpleTheme" type="button" aria-label="Přepnout vzhled">◐</button>
+        <button class="tool-btn" id="simpleSettings" type="button">Nastavení</button>
+        <button class="btn primary" id="simpleReceive" type="button">+ Příjem</button>
+      </div>
+    </header>
+
+    <section class="summary" id="summary" aria-label="Souhrn skladu"><div class="metric"><small>Aktuální zásoba</small><strong>18&nbsp;700 g</strong><span>18,7 kg celkem</span></div><div class="metric"><small>Aktivní pytle</small><strong>7</strong><span>7 evidovaných</span></div><div class="metric"><small>Pozice</small><strong>7</strong><span>40 dostupných</span></div><div class="metric"><small>Pozornost</small><strong>0</strong><span>bez upozornění</span></div></section>
+
+    <section class="toolbar" aria-label="Nástroje skladu">
+      <div class="toolbar-left">
+        <label class="search">
+          <span aria-hidden="true">⌕</span>
+          <input id="simpleSearch" type="search" placeholder="Hledat pytel, surovinu, šarži, box, pozici…" autocomplete="off">
+        </label>
+        <button class="filter" data-simple-view="inventory" type="button">Zásoby</button>
+        <button class="filter" data-simple-view="warehouse" type="button">Pozice</button>
+        <button class="filter" data-simple-view="movements" type="button">Pohyby</button>
+        <button class="filter" data-simple-view="materials" type="button">Suroviny</button>
+        <button class="filter active" data-simple-view="counts" type="button">Inventura</button>
+      </div>
+      <div class="toolbar-right">
+        <button class="tool-btn" id="simpleSortButton" type="button">↕ Řazení</button>
+        <button class="tool-btn" id="simpleViewButton" type="button">☷ Kompaktní</button>
+        <button class="tool-btn" id="simpleExport" type="button">↓ Export</button>
+        <button class="tool-btn" id="simpleImport" type="button">↑ Import</button>
+        <input id="simpleFile" type="file" accept=".xlsx,.xls" hidden="">
+      </div>
+    </section>
+
+    <section class="view-stack">
+      <section id="view-inventory" class="view" hidden=""><div class="page-title"><div><div class="eyebrow">SKLAD / EVIDENCE</div><h1>Zásoby</h1><p>Jeden řádek = jedno balení. Váha je vždy v gramech.</p></div><div class="inline-actions"><button class="btn" data-simple="issue">− Výdej</button><button class="btn" data-simple="move">↕ Přesun</button></div></div><div class="toolbar-card"><select id="invMaterial"><option value="ALL" selected="selected">Všechny suroviny</option><option value="S-001">Ashwagandha KSM-66</option><option value="S-002">Boswellia serrata</option><option value="S-003">Rozchodnice růžová</option><option value="S-004">Kotvičník zemní</option><option value="S-005">Maca</option></select><select id="invState"><option value="ALL" selected="selected">Všechny stavy</option><option value="nový">nový</option><option value="otevřený">otevřený</option></select></div><div class="table-card"><div class="table-scroll"><table><thead><tr><th><input id="selectAll" class="check" type="checkbox"></th><th>ID pytle ↕</th><th>Název suroviny ↕</th><th>Šarže ↕</th><th>Expirace ↕</th><th>Box ↕</th><th>Pozice ↕</th><th>Aktuální hmotnost ↕</th><th>Stav</th><th></th></tr></thead><tbody><tr data-id="P-2026-001"><td><input class="check row-check" type="checkbox"></td><td class="mono"><b>P-2026-001</b></td><td>Ashwagandha KSM-66</td><td class="mono">AK66-260801</td><td class="mono">08/27</td><td class="mono">1</td><td><span class="chip">A1</span></td><td class="mono"><b>2&nbsp;400 g</b><small class="subqty">/ 2&nbsp;800 g</small></td><td><span class="badge new">nový</span></td><td class="row-actions"><button class="icon-action" data-simple-menu="P-2026-001">•••</button></td></tr><tr data-id="P-2026-002"><td><input class="check row-check" type="checkbox"></td><td class="mono"><b>P-2026-002</b></td><td>Ashwagandha KSM-66</td><td class="mono">AK66-260812</td><td class="mono">08/27</td><td class="mono">2</td><td><span class="chip">A2</span></td><td class="mono"><b>1&nbsp;800 g</b><small class="subqty">/ 2&nbsp;100 g</small></td><td><span class="badge open">otevřený</span></td><td class="row-actions"><button class="icon-action" data-simple-menu="P-2026-002">•••</button></td></tr><tr data-id="P-2026-003"><td><input class="check row-check" type="checkbox"></td><td class="mono"><b>P-2026-003</b></td><td>Boswellia serrata</td><td class="mono">BS-260802</td><td class="mono">08/27</td><td class="mono">3</td><td><span class="chip">A3</span></td><td class="mono"><b>4&nbsp;100 g</b><small class="subqty">/ 4&nbsp;100 g</small></td><td><span class="badge new">nový</span></td><td class="row-actions"><button class="icon-action" data-simple-menu="P-2026-003">•••</button></td></tr><tr data-id="P-2026-007"><td><input class="check row-check" type="checkbox"></td><td class="mono"><b>P-2026-007</b></td><td>Boswellia serrata</td><td class="mono">BS-260818</td><td class="mono">08/27</td><td class="mono">7</td><td><span class="chip">C1</span></td><td class="mono"><b>2&nbsp;200 g</b><small class="subqty">/ 2&nbsp;200 g</small></td><td><span class="badge new">nový</span></td><td class="row-actions"><button class="icon-action" data-simple-menu="P-2026-007">•••</button></td></tr><tr data-id="P-2026-005"><td><input class="check row-check" type="checkbox"></td><td class="mono"><b>P-2026-005</b></td><td>Kotvičník zemní</td><td class="mono">KT-260808</td><td class="mono">08/27</td><td class="mono">5</td><td><span class="chip">B2</span></td><td class="mono"><b>2&nbsp;100 g</b><small class="subqty">/ 2&nbsp;100 g</small></td><td><span class="badge open">otevřený</span></td><td class="row-actions"><button class="icon-action" data-simple-menu="P-2026-005">•••</button></td></tr><tr data-id="P-2026-006"><td><input class="check row-check" type="checkbox"></td><td class="mono"><b>P-2026-006</b></td><td>Maca</td><td class="mono">MA-260810</td><td class="mono">08/27</td><td class="mono">6</td><td><span class="chip">B3</span></td><td class="mono"><b>2&nbsp;900 g</b><small class="subqty">/ 2&nbsp;900 g</small></td><td><span class="badge new">nový</span></td><td class="row-actions"><button class="icon-action" data-simple-menu="P-2026-006">•••</button></td></tr><tr data-id="P-2026-004"><td><input class="check row-check" type="checkbox"></td><td class="mono"><b>P-2026-004</b></td><td>Rozchodnice růžová</td><td class="mono">RR-260805</td><td class="mono">08/27</td><td class="mono">4</td><td><span class="chip">B1</span></td><td class="mono"><b>3&nbsp;200 g</b><small class="subqty">/ 3&nbsp;200 g</small></td><td><span class="badge new">nový</span></td><td class="row-actions"><button class="icon-action" data-simple-menu="P-2026-004">•••</button></td></tr></tbody></table></div></div></section>
+      <section id="view-warehouse" class="view" hidden=""><div class="page-title"><div><div class="eyebrow">SKLAD / MAPA</div><h1>Pozice</h1><p>Jedna pozice může obsahovat více boxů a více pytlů.</p></div><button class="btn primary" data-simple="receive">+ Příjem</button></div><div class="warehouse"><div class="warehouse-grid"><button class="slot busy" data-slot="A1"><span>A1</span><b>2&nbsp;400 g</b><small>1 pytle · 1 boxy</small></button><button class="slot busy" data-slot="A2"><span>A2</span><b>1&nbsp;800 g</b><small>1 pytle · 1 boxy</small></button><button class="slot busy" data-slot="A3"><span>A3</span><b>4&nbsp;100 g</b><small>1 pytle · 1 boxy</small></button><button class="slot " data-slot="A4"><span>A4</span><small>volná</small></button><button class="slot " data-slot="A5"><span>A5</span><small>volná</small></button><button class="slot " data-slot="A6"><span>A6</span><small>volná</small></button><button class="slot " data-slot="A7"><span>A7</span><small>volná</small></button><button class="slot " data-slot="A8"><span>A8</span><small>volná</small></button><button class="slot " data-slot="A9"><span>A9</span><small>volná</small></button><button class="slot " data-slot="A10"><span>A10</span><small>volná</small></button><button class="slot busy" data-slot="B1"><span>B1</span><b>3&nbsp;200 g</b><small>1 pytle · 1 boxy</small></button><button class="slot busy" data-slot="B2"><span>B2</span><b>2&nbsp;100 g</b><small>1 pytle · 1 boxy</small></button><button class="slot busy" data-slot="B3"><span>B3</span><b>2&nbsp;900 g</b><small>1 pytle · 1 boxy</small></button><button class="slot " data-slot="B4"><span>B4</span><small>volná</small></button><button class="slot " data-slot="B5"><span>B5</span><small>volná</small></button><button class="slot " data-slot="B6"><span>B6</span><small>volná</small></button><button class="slot " data-slot="B7"><span>B7</span><small>volná</small></button><button class="slot " data-slot="B8"><span>B8</span><small>volná</small></button><button class="slot " data-slot="B9"><span>B9</span><small>volná</small></button><button class="slot " data-slot="B10"><span>B10</span><small>volná</small></button><button class="slot busy" data-slot="C1"><span>C1</span><b>2&nbsp;200 g</b><small>1 pytle · 1 boxy</small></button><button class="slot " data-slot="C2"><span>C2</span><small>volná</small></button><button class="slot " data-slot="C3"><span>C3</span><small>volná</small></button><button class="slot " data-slot="C4"><span>C4</span><small>volná</small></button><button class="slot " data-slot="C5"><span>C5</span><small>volná</small></button><button class="slot " data-slot="C6"><span>C6</span><small>volná</small></button><button class="slot " data-slot="C7"><span>C7</span><small>volná</small></button><button class="slot " data-slot="C8"><span>C8</span><small>volná</small></button><button class="slot " data-slot="C9"><span>C9</span><small>volná</small></button><button class="slot " data-slot="C10"><span>C10</span><small>volná</small></button><button class="slot " data-slot="D1"><span>D1</span><small>volná</small></button><button class="slot " data-slot="D2"><span>D2</span><small>volná</small></button><button class="slot " data-slot="D3"><span>D3</span><small>volná</small></button><button class="slot " data-slot="D4"><span>D4</span><small>volná</small></button><button class="slot " data-slot="D5"><span>D5</span><small>volná</small></button><button class="slot " data-slot="D6"><span>D6</span><small>volná</small></button><button class="slot " data-slot="D7"><span>D7</span><small>volná</small></button><button class="slot " data-slot="D8"><span>D8</span><small>volná</small></button><button class="slot " data-slot="D9"><span>D9</span><small>volná</small></button><button class="slot " data-slot="D10"><span>D10</span><small>volná</small></button></div></div></section>
+      <section id="view-movements" class="view" hidden=""><div class="page-title"><div><div class="eyebrow">AUDIT</div><h1>Pohyby</h1><p>Historie příjmu, výdeje a přesunů.</p></div></div><div class="table-card"><div class="table-scroll"><table><thead><tr><th>ID</th><th>Čas</th><th>Typ</th><th>Pytel</th><th>Trasa</th><th>Množství</th><th>Důvod</th></tr></thead><tbody><tr><td class="mono">M-001</td><td>30. 08. 08:50</td><td>Příjem</td><td class="mono">P-2026-007</td><td>Příjem → C1</td><td class="mono">+2&nbsp;200 g</td><td>Příjem zásoby</td></tr><tr><td class="mono">M-002</td><td>30. 08. 08:10</td><td>Výdej</td><td class="mono">P-2026-002</td><td>A2 → Výdej</td><td class="mono">-300 g</td><td>Výdej</td></tr><tr><td class="mono">M-003</td><td>29. 08. 16:31</td><td>Přesun</td><td class="mono">P-2026-005</td><td>A4 → B2</td><td class="mono">—</td><td>Změna pozice</td></tr><tr><td class="mono">M-004</td><td>29. 08. 13:05</td><td>Výdej</td><td class="mono">P-2026-001</td><td>A1 → Výdej</td><td class="mono">-400 g</td><td>Výdej</td></tr><tr><td class="mono">M-005</td><td>28. 08. 11:40</td><td>Příjem</td><td class="mono">P-2026-006</td><td>Příjem → B3</td><td class="mono">+2&nbsp;900 g</td><td>Příjem zásoby</td></tr></tbody></table></div></div></section>
+      <section id="view-materials" class="view" hidden=""><div class="page-title"><div><div class="eyebrow">KATALOG</div><h1>Suroviny</h1><p>Referenční seznam materiálů.</p></div><button class="btn primary" data-simple="material">+ Surovina</button></div><div class="table-card"><div class="table-scroll"><table><thead><tr><th>ID</th><th>Název</th><th>Aktivní pytle</th><th>Zásoba</th><th>Minimum</th></tr></thead><tbody><tr><td class="mono">S-001</td><td><b>Ashwagandha KSM-66</b></td><td>2</td><td class="mono">4&nbsp;200 g</td><td class="mono">5&nbsp;000 g</td></tr><tr><td class="mono">S-002</td><td><b>Boswellia serrata</b></td><td>2</td><td class="mono">6&nbsp;300 g</td><td class="mono">4&nbsp;000 g</td></tr><tr><td class="mono">S-003</td><td><b>Rozchodnice růžová</b></td><td>1</td><td class="mono">3&nbsp;200 g</td><td class="mono">3&nbsp;500 g</td></tr><tr><td class="mono">S-004</td><td><b>Kotvičník zemní</b></td><td>1</td><td class="mono">2&nbsp;100 g</td><td class="mono">2&nbsp;500 g</td></tr><tr><td class="mono">S-005</td><td><b>Maca</b></td><td>1</td><td class="mono">2&nbsp;900 g</td><td class="mono">3&nbsp;000 g</td></tr></tbody></table></div></div></section>
+      <section id="view-counts" class="view"><div class="page-title"><div><div class="eyebrow">INVENTURA</div><h1>Inventura</h1><p>Jednoduchý kontrolní seznam aktuální skladové hmotnosti.</p></div><button class="btn primary" data-simple="count">+ Nová inventura</button></div><div class="table-card"><div class="table-scroll"><table><thead><tr><th>Inventura</th><th>Datum</th><th>Položky</th><th>Rozdíly</th><th>Stav</th></tr></thead><tbody><tr><td colspan="5" class="empty">Zatím bez inventur.</td></tr></tbody></table></div></div></section>
+      <section id="view-dashboard" class="view" hidden=""></section>
+    </section>
+
+    <footer class="bottom">
+      <span id="simpleSelection">0 vybráno · 0 položek</span>
+      <span id="connectionState">Lokální data · online</span>
+      <div class="pager">
+        <label>Řádků
+          <select id="simpleRows">
+            <option value="10">10</option>
+            <option value="20" selected="selected">20</option>
+            <option value="50">50</option>
+          </select>
+        </label>
+        <span id="simplePage">Strana 1 z 1</span>
+        <div class="page-buttons">
+          <button class="page-btn" id="firstPage" type="button" aria-label="První strana" disabled="disabled">«</button>
+          <button class="page-btn" id="prevPage" type="button" aria-label="Předchozí strana" disabled="disabled">‹</button>
+          <button class="page-btn" id="nextPage" type="button" aria-label="Další strana" disabled="disabled">›</button>
+          <button class="page-btn" id="lastPage" type="button" aria-label="Poslední strana" disabled="disabled">»</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+
+  <div id="legacy-ui" hidden="" aria-hidden="true">
+    <aside id="sidebar"></aside><button id="menuToggle" type="button"></button>
+    <button id="quickReceive" type="button"></button><button id="themeToggle" type="button"></button>
+    <button id="settingsBtn" type="button"></button><button id="exportBtn" type="button"></button><button id="importBtn" type="button"></button>
+    <input id="globalSearch"><input id="fileInput" type="file">
+  </div>
+
+  <dialog id="actionDialog" aria-label="Akce skladu"></dialog>
+  <div id="toastStack" class="toast-stack" aria-live="polite"></div>
+
+  <script src="botskl_files/xlsx.full.min_c7cZ.js"></script>
+  <script src="botskl_files/app_c7cZ.js"></script>
+  <script src="botskl_files/simple-ui_c7cZ.js"></script>
+  <script src="botskl_files/modal-ui_c7cZ.js"></script>
+
+
+</body></html>
